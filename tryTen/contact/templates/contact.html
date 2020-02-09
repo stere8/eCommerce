@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block contents %}
+    <h1>{{title}}</h1>
+    {% if form %}
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Submit" class="btn btn-default">
+    </form>
+    {% endif %}
+    {% if confirm %}
+        <h3>{{ confirm }}</h3>
+    {% endif %}
+{% endblock %}
+{% block jumbotron %}
+
+{% endblock %}
+{% block styles %}
+
+{% endblock %}

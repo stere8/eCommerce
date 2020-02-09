@@ -1,0 +1,16 @@
+.btn-primary {
+    background-image: -webkit-linear-gradient(top, #2db736 0,#265a88 100%);
+    background-image: -o-linear-gradient(top, #b70b00 0,#265a88 100%);
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#337ab7),to(#880080));
+	background-image: linear-gradient(to bottom,#000000 0,#f0ad4e 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff265a88', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+    background-repeat: repeat-x;
+    border-color: #245580;
+}
+.navbar-inverse .navbar-brand, .navbar-inverse .navbar-nav>li>a {
+    text-shadow: 0 -1px 0 rgba(255, 0, 0, 0.25);
+}
+.navbar-inverse .navbar-brand {
+    color: rgba(38, 67, 170, 0.56);
+}
