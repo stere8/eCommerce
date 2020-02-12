@@ -22,6 +22,6 @@ def contact(requset):
         title = "Thanks !"
         confirm_message = "Thank %s we will get back to you" %(name)
         form = None
-    context = {'title': title, 'confirm': confirm_message}
+        context = {'title': title, 'confirm': confirm_message}
     template = 'contact.html'
     return render(requset,template,context)
