@@ -1,40 +1,73 @@
-
+{% load static %}
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <nav class="container-fluid navbar navbar-default navbar-fixed-top">
+
+          <a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'img/We-Buy!.png' %}" class="img-responsive fit-image" width="100" height="50" alt=""></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Bootstrap theme</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
+    <div class="col-xs-3 navbar-left">
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav text-black-50 list-inline"  >
               {% url 'home'  as home %}
               {% url 'about'  as about %}
               {% url 'contact'  as contact %}
-            <li {% if request.path == home  %} class="active" {% endif %} ><a href="{% url 'home' %}">Home</a></li>
-            <li {% if request.path == about  %} class="active" {% endif %}><a href="{% url 'about' %}">About</a></li>
-            <li {% if request.path == contact  %} class="active" {% endif %}><a href="{% url 'contact' %}">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                  {% if  home.request.user.is_authneticated  %}
+            <li class=" list-inline-item {% if request.path == home  %} active {% endif %} " ><a style="color: #0f0f0f; font-size: 20px" href="{% url 'home' %}">Home  </a></li>
+            <li class=" list-inline-item {% if request.path == about  %} active {% endif %} "><a style="color: #0f0f0f; font-size: 20px" href="{% url 'about' %}">About</a></li>
+            <li class=" list-inline-item {% if request.path == contact  %} active {% endif %}"><a style="color: #0f0f0f; font-size: 20px" href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+</div>
+    <div class="col-xs-5 nav navbar-brand">
+        <form class="form-inline">
+            <div class="form-group mb-2">
+                <input  type="text" style="font-family: inherit; font-weight: inherit;  " aria-autocomplete="both" placeholder="Search" required>
+            </div>
+            <div class="form-group mb-2">
+                <select  style='font-family: serif'>
+                    <option value="0" selected>All</option>
+                {% for category in categories %}
+                    <option value="{{category.name}}" >{{category.name}}</option>
+                {% endfor %}
+                </select>
+            </div>
+            <input class="form-group" type="submit" value="Search" href="{% url 'about' %}">
+        </form>
+    </div>
+
+
+        <!--/.nav-collapse -->
+            <div class="container-fluid navbar-right col-xs-2 show" >
+                {% if  request.user.is_authenticated   %}
+                    <div class="">
+
+                    <a href="#" class="navbar-brand navbar-right " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding-top: 10px;">
+                      <img src="{% static 'img/user.png' %}" class="img-responsive fit-image" style="height: 30px">
+                    </a>
+
+                    {% else %}
+
+                    <ul class="nav text-black-50 list-inline navbar-right col-xs-2 " style="width: 100%; display: inline-list-item">
+                      <li class=" list-inline-item"><a style="color: #0f0f0f; font-size: 20px" href="{% url 'account_login' %}">Login</a></li>
+                      <li class=" list-inline-item"><a style="color: #0f0f0f; font-size: 20px" href="{% url 'account_signup' %}">Signup</a></li>
+                    </ul>
+                    </div>
+                {% endif %}
+                <ul class="dropdown-menu col-xs-4" style="margin-right: 20px;">
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li role="separator" class="divider"></li>
+                    {% if request.user.is_superuser %}
+                        <li>SuperUser</li>
+                        <li role="separator" class="divider"></li>
+                    {% endif %}
+
                 <li><a href="{% url 'account_logout' %}">Logout</a></li>
-                      {% else %}
-                      <li><a href="{% url 'account_login' %}">Login</a></li>
-                <li><a href="{% url 'account_signup' %}">Signup</a></li>
-                  {% endif %}
-                <li role="separator" class="divider">{{   request.user.is_authneticated}}</li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">{{   self.request.user.is_authneticated }} </a></li>
-                <li><a href="#">One more separated link</a></li>
               </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+
+
+              </div>
+</nav>
+

@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 from profiles import views as profile_views
 from contact import views as contact_views
 from checkout import views as checkout_views
+from products import views as product_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('about/', profile_views.about ,name='about'),
     path('profile/', profile_views.userProfile, name='profile'),
     path('checkout/', checkout_views.checkout, name='checkout'),
+    path('product/<int:pid>', product_views.product_view,name='product'),
     path('contact/',contact_views.contact, name='contact'),
     path('accounts/', include('allauth.urls')),
 
